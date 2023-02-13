@@ -41,8 +41,6 @@ function App() {
   }
 
   const operatorClick = (operator) => {
-    // if there was a previous operator recorded as having been clicked, perform
-      // the operation for the previous operator
       if (previousTotal && previousOperator) {
         switch (previousOperator) {
           case "+":
@@ -60,16 +58,13 @@ function App() {
         }
       }
 
-      // if the 'equals' button was clicked, clear the previous operator, otherwise
-      // record what the previous operator was
       if (operator === "=") {
         setPreviousOperator(null);
       } else {
         setPreviousOperator(operator);
 
       }
-      // replace the previous total with the current running total and flag that a
-      // new total has been calculated
+    
       setPreviousTotal(runningTotal);
       setNewTotal(true);
   }
@@ -93,15 +88,14 @@ function App() {
   }
 
   const divide = (number) => {
-    if (number == '0'){
-      setRunningTotal('Error: Cannot divide by zero')
-    }
+    if (number === 0) {
+      return 0
+    } 
     else {
       let calculatedNumber = parseFloat(previousTotal) / parseFloat(number);
       setRunningTotal(calculatedNumber);
       setCalculatedTotal(calculatedNumber);
     }
-   
   }
 
 

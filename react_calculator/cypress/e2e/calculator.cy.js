@@ -8,28 +8,29 @@ describe("Calculator", () => {
     cy.get('.display').should('contain', '2')
   })
 
-  it('should display the running total', () => {
-    cy.get('#number2').click();
+  it('should display the running total when input received', () => {
     cy.get('#number6').click();
-    cy.get('.display').should('contain', '26')
+    cy.get('#number6').click();
+    cy.get('#number6').click();
+    cy.get('.display').should('contain', '666')
   })
 
-  it('should display the update result of an operation', () => {
-    cy.get('#number7').click();
+  it('should update and display the result of an operation', () => {
+    cy.get('#number5').click();
     cy.get('#operator-multiply').click();
-    cy.get('#number2').click();
-    cy.get('#operator-multiply').click();
-    cy.get('.display').should('contain', '14')
-  })
-
-  it('should be able to chain together multiple operations', () => {
-    cy.get('#number8').click();
-    cy.get('#operator-multiply').click();
-    cy.get('#number2').click();
-    cy.get('#operator-subtract').click();
-    cy.get('#number1').click();
+    cy.get('#number5').click();
     cy.get('#operator-equals').click();
-    cy.get('.display').should('contain', '15')
+    cy.get('.display').should('contain', '25')
+  })
+
+  it('should be able to chain multiple operations together', () => {
+    cy.get('#number5').click();
+    cy.get('#operator-add').click();
+    cy.get('#number5').click();
+    cy.get('#operator-multiply').click();
+    cy.get('#number2').click();
+    cy.get('#operator-equals').click();
+    cy.get('.display').should('contain', '20')
   })
 
   it('should be able to display large numbers', () => {
@@ -43,20 +44,20 @@ describe("Calculator", () => {
     cy.get('.display').should('contain', '8008135')
   })
 
-  it('should be able to display decimal numbers', () => {
-    cy.get('#number8').click();
-    cy.get('#decimal').click();
-    cy.get('#number1').click();
+  it('should be able to display a negative number', () => {
+    cy.get('#number2').click();
+    cy.get('#operator-subtract').click();
+    cy.get('#number4').click();
     cy.get('#operator-equals').click();
-    cy.get('.display').should('contain', '8.1')
+    cy.get('.display').should('contain', '-2')
   })
 
-  it('should be able to display negative numbers', () => {
-    cy.get('#number8').click();
-    cy.get('#operator-subtract').click();
-    cy.get('#number9').click();
+  it('should be able to display decimal numbers', () => {
+    cy.get('#number3').click();
+    cy.get('#operator-divide').click();
+    cy.get('#number2').click();
     cy.get('#operator-equals').click();
-    cy.get('.display').should('contain', '-1')
+    cy.get('.display').should('contain', '1.5')
   })
 
   it('should display an error when attempting to divide by zero', () => {
