@@ -1,0 +1,5 @@
+const employeeList = ['Andy', 'Brin', 'Helen', 'Christine', 'James'];
+
+const alphabeticalEmployeeList = employeeList.sort();
+
+console.log(alphabeticalEmployeeList);
